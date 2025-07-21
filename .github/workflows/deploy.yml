@@ -33,7 +33,7 @@ jobs:
 
         docker save -o ci_voilmed-api.tar ci_voilmed-api
 
-        scp -o StrictHostKeyChecking=no -i new_acesso.pem vollmed-api.tar $USER@$HOST:/home/ubuntu/
+        scp -o StrictHostKeyChecking=no -i new_acesso.pem ci_voilmed-api.tar $USER@$HOST:/home/ubuntu/
         scp -o StrictHostKeyChecking=no -i new_acesso.pem init.sql $USER@$HOST:/home/ubuntu/
         scp -o StrictHostKeyChecking=no -i new_acesso.pem docker-compose-prod.yaml $USER@$HOST:/home/ubuntu/
         scp -o StrictHostKeyChecking=no -i new_acesso.pem script-deploy.sh $USER@$HOST:/home/ubuntu/  
