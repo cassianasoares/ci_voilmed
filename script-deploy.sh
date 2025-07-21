@@ -1,6 +1,6 @@
 #! /bin/bash
 
-docker load -i voilmed-api.tar
+docker load -i vollmed-api_api.tar
 
 mv docker-compose-prod.yaml docker-compose.yaml
 

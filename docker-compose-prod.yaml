@@ -14,6 +14,7 @@ services:
       - vollmed
   
   api:
+    build: .
     image: vollmed-api_api:latest   
     restart: unless-stopped
     environment:
