@@ -32,3 +32,10 @@ jobs:
         chmod 600 new_acesso.pem
 
         docker save -o vollmed-api.tar vollmed-api_api
+
+        scp -o StrictHostKeyChecking=no -i new_acesso.pem vollmed-api.tar $USER@$HOST:/home/ubuntu/
+        scp -o StrictHostKeyChecking=no -i new_acesso.pem init.sql $USER@$HOST:/home/ubuntu/
+        scp -o StrictHostKeyChecking=no -i new_acesso.pem docker-compose-prod.yaml $USER@$HOST:/home/ubuntu/
+        scp -o StrictHostKeyChecking=no -i new_acesso.pem script-deploy.sh $USER@$HOST:/home/ubuntu/  
+
+        ssh -i new_acesso.pem $USER@$HOST "chmod +x script-deploy.sh && ./script-deploy.sh"
