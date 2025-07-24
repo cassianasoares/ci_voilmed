@@ -1,24 +1,27 @@
 #!/bin/bash
 
+echo "🔄 Atualizando pacotes..."
 sudo apt update
 
 echo "🔍 Verificando se o Docker está instalado..."
 if ! command -v docker &> /dev/null; then
   echo "📦 Instalando Docker..."
   curl -fsSL https://get.docker.com -o get-docker.sh
-  sh get-docker.sh
-  systemctl start docker
+  sudo sh get-docker.sh
+  sudo systemctl start docker
 else
   echo "✅ Docker já está instalado."
 fi
 
-# 🔐 Verifica se o usuário está no grupo docker
-if ! groups $USER | grep -q '\bdocker\b'; then
-  echo "🔧 Adicionando usuário '$USER' ao grupo docker..."
-  sudo usermod -aG docker $USER
-  echo "⚠️ IMPORTANTE: Logout/login necessário para usar Docker sem sudo."
+echo "🔍 Verificando acesso ao Docker (sem sudo)..."
+if ! groups | grep -q '\bdocker\b'; then
+  echo "🔧 Adicionando usuário '$(whoami)' ao grupo docker..."
+  sudo usermod -aG docker $(whoami)
+  echo "🔁 Aplicando novo grupo à sessão..."
+  exec sudo -u $(whoami) newgrp docker
+  echo "⚠️ Se os comandos seguintes ainda falharem, faça logout/login manualmente."
 else
-  echo "✅ Usuário '$USER' já está no grupo docker."
+  echo "✅ Usuário já pertence ao grupo docker."
 fi
 
 echo "📦 Carregando imagem Docker..."
