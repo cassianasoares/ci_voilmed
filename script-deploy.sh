@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo apt update
+
 echo "🔍 Verificando se o Docker está instalado..."
 if ! command -v docker &> /dev/null; then
   echo "📦 Instalando Docker..."
