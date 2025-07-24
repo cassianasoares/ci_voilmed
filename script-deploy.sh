@@ -1,15 +1,5 @@
 #!/bin/bash
 
-echo "🔍 Verificando se o MySQL está instalado..."
-if ! command -v mysql &> /dev/null; then
-  echo "📦 Instalando MySQL..."
-  apt update
-  apt install -y mysql-server
-  systemctl start mysql
-else
-  echo "✅ MySQL já está instalado."
-fi
-
 echo "🔍 Verificando se o Docker está instalado..."
 if ! command -v docker &> /dev/null; then
   echo "📦 Instalando Docker..."
