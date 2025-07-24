@@ -1,7 +1,7 @@
 version: '3'
 services:
   mysqldb:
-    image: mysql:8.0.36
+    image: mysql:8.0.36-alpine
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=vollmed_api
