@@ -15,7 +15,7 @@ fi
 
 echo "🔍 Verificando acesso ao Docker (sem sudo)..."
 if ! groups | grep -q '\bdocker\b'; then
-  echo "🔧 Adicionando usuário '$(whoami)' ao grupo docker..."
+  echo "🔧 Adicionando usuário '$(whoami)' ao grupo docker.."
   sudo usermod -aG docker $(whoami)
   echo "🔁 Aplicando novo grupo à sessão..."
   exec sudo -u $(whoami) newgrp docker
