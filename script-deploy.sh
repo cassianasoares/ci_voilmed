@@ -10,6 +10,18 @@ else
   echo "MySQL já está instalado."
 fi
 
+# Verifica se o Docker está instalado
+if ! command -v docker &> /dev/null; then
+  echo "Docker não está instalado. Instalando agora..."
+  curl -fsSL https://get.docker.com -o get-docker.sh
+  sudo sh get-docker.sh
+  sudo systemctl start docker
+  sudo usermod -aG docker $USER
+else
+  echo "Docker já está instalado."
+fi
+
+
 echo "Carregando imagem Docker..."
 docker load -i ci_voilmed-api.tar
 
